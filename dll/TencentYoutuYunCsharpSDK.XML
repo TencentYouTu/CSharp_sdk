@@ -1,0 +1,339 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TencentYoutuYunCsharpSDK</name>
+    </assembly>
+    <members>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Auth.HmacSha1Sign(System.String,System.String)">
+            <summary>
+            HMAC-SHA1 算法签名
+            </summary>
+            <param name="str"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Auth.SetOrignal(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            签名串拼接
+            </summary>
+            <param name="uid"></param>
+            <param name="appid"></param>
+            <param name="secretid"></param>
+            <param name="stime"></param>
+            <param name="etime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Auth.appSign(System.String,System.String)">
+            <summary>
+            签名
+            </summary>
+            <param name="expired">过期时间</param>
+            <param name="userid">暂时不用</param>
+            <returns>签名</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.JsonHelp`1.ToJsonString(`0)">
+            <summary>
+            将类型实例转换为Json字符串
+            </summary>
+            <param name="t">类型实例</param>
+            <returns></returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.JsonHelp`1.FromJsonString(System.String)">
+            <summary>
+            将Json字符串转换为类型实例
+            </summary>
+            <param name="jsonstring">字符串</param>
+            <returns>类型</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.JsonHelp`1.FromJsonStringToDataTable(System.String)">
+            <summary>
+            将Json字符串转换为类型实例
+            </summary>
+            <param name="jsonstring">字符串</param>
+            <returns>类型</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.JsonHelp`1.ToJsonString(System.Collections.Generic.List{`0})">
+            <summary>
+            将List转换为字符串
+            </summary>
+            <param name="tlist">数据集</param>
+            <returns>字符串</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.JsonHelp`1.GetList(System.String)">
+            <summary>
+            将Json字符串转换为类型List集合
+            </summary>
+            <param name="jsonstring">字符串</param>
+            <returns>类型集合</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.JsonHelp`1.ToJson(System.Object)">
+            <summary>  
+            对象转换为Json字符串  
+            </summary>  
+            <param name="jsonObject">对象</param>  
+            <returns>Json字符串</returns>  
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.JsonHelp`1.ToJson(System.Collections.IEnumerable)">
+            <summary>  
+            对象集合转换Json  
+            </summary>  
+            <param name="array">集合对象</param>  
+            <returns>Json字符串</returns>  
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.JsonHelp`1.ToArrayString(System.Collections.IEnumerable)">
+            <summary>  
+            普通集合转换Json  
+            </summary>  
+            <param name="array">集合对象</param>  
+            <returns>Json字符串</returns>  
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.JsonHelp`1.ToJson(System.Data.DataTable)">
+            <summary>  
+            Datatable转换为Json  
+            </summary>  
+            <param name="table">Datatable对象</param>  
+            <returns>Json字符串</returns>  
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.JsonHelp`1.ToJson(System.Data.DataTable,System.String)">
+            <summary> 
+            DataTable转成Json  
+            </summary> 
+            <param name="jsonName"></param> 
+            <param name="dt"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.JsonHelp`1.ToJson(System.Data.Common.DbDataReader)">
+            <summary>  
+            DataReader转换为Json  
+            </summary>  
+            <param name="dataReader">DataReader对象</param>  
+            <returns>Json字符串</returns>  
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.JsonHelp`1.ToJson(System.Data.DataSet)">
+            <summary>  
+            DataSet转换为Json  
+            </summary>  
+            <param name="dataSet">DataSet对象</param>  
+            <returns>Json字符串</returns>  
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.JsonHelp`1.StringFormat(System.String,System.Type)">
+            <summary> 
+            格式化字符型、日期型、布尔型 
+            </summary> 
+            <param name="str"></param> 
+            <param name="type"></param> 
+            <returns></returns> 
+        </member>
+        <member name="T:TencentYoutuYun.SDK.Csharp.Common.Utility">
+            <summary>
+            通用方法
+            </summary>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.Utility.StrToByteArr(System.String)">
+            <summary>
+            字符串转字节数组
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.Utility.ByteArrToStr(System.Byte[])">
+            <summary>
+            字节数组转字符串
+            </summary>
+            <param name="byteArray"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.Utility.UnixTime(System.Double)">
+            <summary>
+            UnixTime时间戳
+            </summary>
+            <param name="expired">有效期（单位：秒）</param>
+            <returns></returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.Utility.JoinByteArr(System.Byte[],System.Byte[])">
+            <summary>
+            字节数组合并
+            </summary>
+            <param name="byte1"></param>
+            <param name="byte2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.Utility.GetWebImage(System.String)">
+            <summary>
+            获取网络图片
+            </summary>
+            <param name="url">URL地址</param>
+            <returns>Bitmap图片</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.Utility.ImgBase64(System.String,System.Boolean)">
+            <summary>
+            图片转Base64
+            </summary>
+            <param name="path">图片路径</param>
+            <param name="isWebImg">是否网络图片 默认 false </param>
+            <returns>Base64</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Common.Utility.Base64Img(System.String)">
+            <summary>
+            Base64转Image
+            </summary>
+            <param name="Base64String">Base64String</param>
+            <returns>Image图片</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Conf.setAppInfo(System.String,System.String,System.String,System.String)">
+            <summary>
+            初始化 应用信息
+            </summary>
+            <param name="appid"></param>
+            <param name="secretId"></param>
+            <param name="secretKey"></param>
+            <param name="userid"></param>
+        </member>
+        <member name="P:TencentYoutuYun.SDK.Csharp.Conf.USER_ID">
+            <summary>
+            开发者 QQ
+            </summary>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Http.Post(System.String,System.String,System.String)">
+            <summary>
+            send http request with POST method
+            </summary>
+            <param name="postUrl">请求的url地址</param>
+            <param name="postData">请求数据</param>
+            <param name="authorization">签名</param>
+            <returns></returns>
+        </member>
+        <member name="T:TencentYoutuYun.SDK.Csharp.Model.FaceImage">
+            <summary>
+            人脸图片信息
+            </summary>
+        </member>
+        <member name="P:TencentYoutuYun.SDK.Csharp.Model.FaceImage.image_path">
+            <summary>
+            包含人脸的图片数据
+            </summary>
+        </member>
+        <member name="P:TencentYoutuYun.SDK.Csharp.Model.FaceImage.isWebImage">
+            <summary>
+            是否为网络图片
+            </summary>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.statusText(System.Int32)">
+            <summary>
+            return the status message 
+            </summary>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.detectface(System.String,System.Int32)">
+            <summary>
+            人脸检测 detectface
+            </summary>
+            <param name="image_path">待检测的路径</param>
+            <param name="isbigface">是否大脸模式 ０表示检测所有人脸， 1表示只检测照片最大人脸　适合单人照模式</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.faceshape(System.String,System.Int32)">
+            <summary>
+            五官定位 faceshape
+            </summary>
+            <param name="image_path">待检测的路径</param>
+            <param name="isbigface">是否大脸模式 ０表示检测所有人脸， 1表示只检测照片最大人脸　适合单人照模式</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.facecompare(System.String,System.String)">
+            <summary>
+            人脸对比 facecompare
+            </summary>
+            <param name="imageA">待比对的A图片数据</param>
+            <param name="imageB">待比对的B图片数据</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.faceverify(System.String,System.String)">
+            <summary>
+            人脸验证 faceverify
+            </summary>
+            <param name="image_path">待验证的图片路径</param>
+            <param name="person_id">待验证的人脸id</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.faceidentify(System.String,System.String)">
+            <summary>
+            人脸识别 faceidentify
+            </summary>
+            <param name="image_path">待识别的图片路径</param>
+            <param name="group_id">识别的组id</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.newperson(System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            个体创建 newperson
+            </summary>
+            <param name="image_path">包含个体人脸的图片数据</param>
+            <param name="person_id">新建的个体id，用户指定，需要保证app_id下的唯一性</param>
+            <param name="person_name">姓名</param>
+            <param name="group_ids">新建的个体存放的组id，可以指定多个组id，用户指定（组默认创建）</param>
+            <param name="person_tag">备注信息，用户自解释字段</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.delperson(System.String)">
+            <summary>
+            删除个体 delperson
+            </summary>
+            <param name="person_id">待删除的个体id</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <!-- 对于成员“M:TencentYoutuYun.SDK.Csharp.Youtu.addface(System.String,System.Collections.Generic.List{TencentYoutuYun.SDK.Csharp.Model.FaceImage},System.String)”忽略有格式错误的 XML 注释 -->
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.delface(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            删除人脸 delface
+            </summary>
+            <param name="person_id">待删除人脸的个体身份id</param>
+            <param name="face_ids">删除人脸id的列表</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.setinfo(System.String,System.String,System.String)">
+            <summary>
+            设置信息 setinfo
+            </summary>
+            <param name="person_id">待设置的个体身份id</param>
+            <param name="person_name">新设置的个体名字</param>
+            <param name="person_tag">新设置的人备注信息</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.getinfo(System.String)">
+            <summary>
+            获取信息 getinfo
+            </summary>
+            <param name="person_id">待查询的个体身份id</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.getgroupids">
+            <summary>
+            获取组列表 getgroupids
+            </summary>
+            <returns>返回的组列表查询结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.getpersonids(System.String)">
+            <summary>
+            获取人列表 getpersonids
+            </summary>
+            <param name="group_id">待查询的组id</param>
+            <returns>返回的个体列表查询结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.getfaceids(System.String)">
+            <summary>
+            获取人脸列表 getfaceids
+            </summary>
+            <param name="person_id">待查询的个体id</param>
+            <returns>返回的人脸列表查询结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.getfaceinfo(System.String)">
+            <summary>
+            获取人脸信息 getfaceinfo
+            </summary>
+            <param name="face_id">待查询的人脸id</param>
+            <returns>返回的人脸信息查询结果，JSON字符串，字段参见API文档</returns>
+        </member>
+    </members>
+</doc>
