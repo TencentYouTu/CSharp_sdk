@@ -180,7 +180,7 @@
             <param name="Base64String">Base64String</param>
             <returns>Image图片</returns>
         </member>
-        <member name="M:TencentYoutuYun.SDK.Csharp.Conf.setAppInfo(System.String,System.String,System.String,System.String)">
+        <member name="M:TencentYoutuYun.SDK.Csharp.Conf.setAppInfo(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             初始化 应用信息
             </summary>
@@ -194,11 +194,11 @@
             开发者 QQ
             </summary>
         </member>
-        <member name="M:TencentYoutuYun.SDK.Csharp.Http.Post(System.String,System.String,System.String)">
+        <member name="M:TencentYoutuYun.SDK.Csharp.Http.HttpPost(System.String,System.String,System.String)">
             <summary>
             send http request with POST method
             </summary>
-            <param name="postUrl">请求的url地址</param>
+            <param name="methodName">请求的接口名称</param>
             <param name="postData">请求数据</param>
             <param name="authorization">签名</param>
             <returns></returns>
@@ -229,7 +229,15 @@
             <summary>
             人脸检测 detectface
             </summary>
-            <param name="image_path">待检测的路径</param>
+            <param name="image_path">的路径</param>
+            <param name="isbigface">是否大脸模式 ０表示检测所有人脸， 1表示只检测照片最大人脸　适合单人照模式</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.detectfaceurl(System.String,System.Int32)">
+            <summary>
+            人脸检测 detectfaceurl
+            </summary>
+            <param name="url">图片的url</param>
             <param name="isbigface">是否大脸模式 ０表示检测所有人脸， 1表示只检测照片最大人脸　适合单人照模式</param>
             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         </member>
@@ -237,7 +245,15 @@
             <summary>
             五官定位 faceshape
             </summary>
-            <param name="image_path">待检测的路径</param>
+            <param name="image_path">的路径</param>
+            <param name="isbigface">是否大脸模式 ０表示检测所有人脸， 1表示只检测照片最大人脸　适合单人照模式</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.faceshapeurl(System.String,System.Int32)">
+            <summary>
+            五官定位 faceshapeurl
+            </summary>
+            <param name="url">图片的url</param>
             <param name="isbigface">是否大脸模式 ０表示检测所有人脸， 1表示只检测照片最大人脸　适合单人照模式</param>
             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         </member>
@@ -249,6 +265,14 @@
             <param name="imageB">待比对的B图片数据</param>
             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.facecompareurl(System.String,System.String)">
+            <summary>
+            人脸对比 facecompareurl
+            </summary>
+            <param name="urlA">图片的urlA</param>
+            <param name="urlB">图片的urlB</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
         <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.faceverify(System.String,System.String)">
             <summary>
             人脸验证 faceverify
@@ -257,11 +281,27 @@
             <param name="person_id">待验证的人脸id</param>
             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.faceverifyurl(System.String,System.String)">
+            <summary>
+            人脸验证 faceverifyurl
+            </summary>
+            <param name="url">图片的url</param>
+            <param name="person_id">待验证的人脸id</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
         <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.faceidentify(System.String,System.String)">
             <summary>
             人脸识别 faceidentify
             </summary>
             <param name="image_path">待识别的图片路径</param>
+            <param name="group_id">识别的组id</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.faceidentifyurl(System.String,System.String)">
+            <summary>
+            人脸识别 faceidentifyurl
+            </summary>
+            <param name="url">图片的url</param>
             <param name="group_id">识别的组id</param>
             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         </member>
@@ -276,6 +316,17 @@
             <param name="person_tag">备注信息，用户自解释字段</param>
             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.newpersonurl(System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            个体创建 newpersonurl
+            </summary>
+            <param name="url">图片的url</param>
+            <param name="person_id">新建的个体id，用户指定，需要保证app_id下的唯一性</param>
+            <param name="person_name">姓名</param>
+            <param name="group_ids">新建的个体存放的组id，可以指定多个组id，用户指定（组默认创建）</param>
+            <param name="person_tag">备注信息，用户自解释字段</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
         <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.delperson(System.String)">
             <summary>
             删除个体 delperson
@@ -284,6 +335,7 @@
             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         </member>
         <!-- 对于成员“M:TencentYoutuYun.SDK.Csharp.Youtu.addface(System.String,System.Collections.Generic.List{System.String},System.String)”忽略有格式错误的 XML 注释 -->
+        <!-- 对于成员“M:TencentYoutuYun.SDK.Csharp.Youtu.addfaceurl(System.String,System.Collections.Generic.List{System.String},System.String)”忽略有格式错误的 XML 注释 -->
         <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.delface(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             删除人脸 delface
@@ -334,6 +386,48 @@
             </summary>
             <param name="face_id">待查询的人脸id</param>
             <returns>返回的人脸信息查询结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.fuzzydetect(System.String)">
+            <summary>
+            判断一个图像的模糊程度
+            </summary>
+            <param name="image_path">的图片路径</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.fuzzydetecturl(System.String)">
+            <summary>
+            判断一个图像的模糊程度
+            </summary>
+            <param name="url">图片的url</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.fooddetect(System.String)">
+            <summary>
+            识别一个图像是否为美食图像
+            </summary>
+            <param name="image_path">的图片路径</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.fooddetecturl(System.String)">
+            <summary>
+            识别一个图像是否为美食图像
+            </summary>
+            <param name="url">图片的url</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.imagetag(System.String)">
+            <summary>
+            识别一个图像的标签信息,对图像分类
+            </summary>
+            <param name="image_path">的图片路径</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.imagetagurl(System.String)">
+            <summary>
+            识别一个图像的标签信息,对图像分类
+            </summary>
+            <param name="url">图片的url</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         </member>
     </members>
 </doc>

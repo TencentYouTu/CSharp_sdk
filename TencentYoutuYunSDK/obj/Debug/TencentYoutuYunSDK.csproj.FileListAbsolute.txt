@@ -24,3 +24,4 @@ D:\openpPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Debug\Newtonsoft.Json.dll
 D:\openpPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Debug\Newtonsoft.Json.xml
 D:\openpPlatForm\CSharp_sdk\TencentYoutuYunSDK\obj\Debug\TencentYoutuYunCsharpSDK.dll
 D:\openpPlatForm\CSharp_sdk\TencentYoutuYunSDK\obj\Debug\TencentYoutuYunCsharpSDK.pdb
+D:\openpPlatForm\CSharp_sdk\TencentYoutuYunSDK\obj\Debug\TencentYoutuYunSDK.csprojResolveAssemblyReference.cache

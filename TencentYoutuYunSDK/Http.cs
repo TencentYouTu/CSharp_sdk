@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace TencentYoutuYun.SDK.Csharp
 {
@@ -13,17 +12,30 @@ namespace TencentYoutuYun.SDK.Csharp
         /// <summary>
         /// send http request with POST method
         /// </summary>
-        /// <param name="postUrl">请求的url地址</param>
+        /// <param name="methodName">请求的接口名称</param>
         /// <param name="postData">请求数据</param>
         /// <param name="authorization">签名</param>
         /// <returns></returns>
-        public static string Post(string postUrl, string postData, string authorization)
+        public static string HttpPost(string methodName, string postData, string authorization)
         {
             string ret = string.Empty;
             try
             {
-                byte[] byteArray = Encoding.UTF8.GetBytes(postData); //转化
-                HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(new Uri(postUrl));
+                byte[] byteArray = Encoding.UTF8.GetBytes(postData); //转化为UTF8
+                HttpWebRequest webReq=null ;
+
+                if (Conf.Instance().END_POINT.StartsWith("https", StringComparison.OrdinalIgnoreCase))
+                {
+                    ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
+                    webReq = WebRequest.Create((Conf.Instance().END_POINT + methodName)) as HttpWebRequest;
+                    webReq.ProtocolVersion = HttpVersion.Version10;
+                }
+                else
+                {
+                    webReq = (HttpWebRequest)WebRequest.Create(new Uri(Conf.Instance().END_POINT + methodName));
+                }
+
+               
                 webReq.Method = "POST";
                 webReq.ContentType = "text/json";
                 webReq.Headers.Add(HttpRequestHeader.Authorization, authorization);
@@ -60,5 +72,11 @@ namespace TencentYoutuYun.SDK.Csharp
             }
             return ret;
         }
+
+        private static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
+        {
+            return true; //总是接受   
+        }
+
     }
 }

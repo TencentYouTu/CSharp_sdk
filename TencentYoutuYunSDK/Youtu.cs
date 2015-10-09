@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using TencentYoutuYun.SDK.Csharp.Common;
-using TencentYoutuYun.SDK.Csharp.Model;
 
 namespace TencentYoutuYun.SDK.Csharp
 {
@@ -22,24 +18,48 @@ namespace TencentYoutuYun.SDK.Csharp
         /// <returns></returns>
         public static string statusText(int status)
         {
-            string statusText = "unkown";
+            string statusText = "UNKOWN";
 
             switch (status)
             {
+                case 0:
+                statusText = "CONNECT_FAIL";
+                break;
                 case 200:
                     statusText = "HTTP OK";
                     break;
                 case 400:
-                    statusText = "Bad Request";
+                    statusText = "BAD_REQUEST";
                     break;
                 case 401:
-                    statusText = "Unauthorized";
+                    statusText = "UNAUTHORIZED";
                     break;
                 case 403:
-                    statusText = "Forbidden";
+                    statusText = "FORBIDDEN";
+                    break;
+                case 404:
+                    statusText = "NOTFOUND";
+                    break;
+                case 411:
+                    statusText = "REQ_NOLENGTH";
+                    break;
+                case 423:
+                    statusText = "SERVER_NOTFOUND";
+                    break;
+                case 424:
+                    statusText = "METHOD_NOTFOUND";
+                    break;
+                case 425:
+                    statusText = "REQUEST_OVERFLOW";
                     break;
                 case 500:
-                    statusText = "Internal Server Error";
+                    statusText = "INTERNAL_SERVER_ERROR";
+                    break;
+                case 503:
+                    statusText = "SERVICE_UNAVAILABLE";
+                    break;
+                case 504:
+                    statusText = "GATEWAY_TIME_OUT";
                     break;
             }
             return statusText;
@@ -52,41 +72,84 @@ namespace TencentYoutuYun.SDK.Csharp
         /// <summary>
         /// 人脸检测 detectface
         /// </summary>
-        /// <param name="image_path">待检测的路径</param>
+        /// <param name="image_path">的路径</param>
         /// <param name="isbigface">是否大脸模式 ０表示检测所有人脸， 1表示只检测照片最大人脸　适合单人照模式</param>
         /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         public static string detectface(string image_path, int isbigface=1)
         {
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/detectface";
-            StringBuilder postData = new StringBuilder(); 
+            string methodName = "youtu/api/detectface";
+            StringBuilder postData = new StringBuilder();
             string pars = "\"app_id\":\"{0}\",\"image\":\"{1}\",\"mode\":{2}";
             pars = string.Format(pars, Conf.Instance().APPID, Utility.ImgBase64(image_path), isbigface);
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
             return result;
         }
+
+
+        /// <summary>
+        /// 人脸检测 detectfaceurl
+        /// </summary>
+        /// <param name="url">图片的url</param>
+        /// <param name="isbigface">是否大脸模式 ０表示检测所有人脸， 1表示只检测照片最大人脸　适合单人照模式</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string detectfaceurl(string url,int isbigface = 1)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/api/detectface";
+            StringBuilder postData = new StringBuilder();
+            string pars = "\"app_id\":\"{0}\",\"url\":\"{1}\",\"mode\":{2}";
+            pars = string.Format(pars, Conf.Instance().APPID, url, isbigface);
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
         /// <summary>
         /// 五官定位 faceshape
         /// </summary>
-        /// <param name="image_path">待检测的路径</param>
+        /// <param name="image_path">的路径</param>
         /// <param name="isbigface">是否大脸模式 ０表示检测所有人脸， 1表示只检测照片最大人脸　适合单人照模式</param>
         /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         public static string faceshape(string image_path,int isbigface=1)
         {
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/faceshape";
+            string methodName = "youtu/api/faceshape";
             StringBuilder postData = new StringBuilder(); 
             string pars = "\"app_id\":\"{0}\",\"image\":\"{1}\",\"mode\":{2}";
             pars =string.Format(pars, Conf.Instance().APPID, Utility.ImgBase64(image_path), isbigface);
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
             return result;
         }
+
+        /// <summary>
+        /// 五官定位 faceshapeurl
+        /// </summary>
+        /// <param name="url">图片的url</param>
+        /// <param name="isbigface">是否大脸模式 ０表示检测所有人脸， 1表示只检测照片最大人脸　适合单人照模式</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string faceshapeurl(string url,int isbigface = 1)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/api/faceshape";
+            StringBuilder postData = new StringBuilder();
+            string pars = "\"app_id\":\"{0}\",\"url\":\"{1}\",\"mode\":{2}";
+            pars = string.Format(pars, Conf.Instance().APPID, url, isbigface);
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
 
         #endregion
 
@@ -101,14 +164,34 @@ namespace TencentYoutuYun.SDK.Csharp
         public static string facecompare(string imageA, string imageB)
         {
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/facecompare";
+            string methodName = "youtu/api/facecompare";
             StringBuilder postData = new StringBuilder(); 
             string pars = "\"app_id\":\"{0}\",\"imageA\":\"{1}\",\"imageB\":\"{2}\"";
             pars =string.Format(pars, Conf.Instance().APPID, Utility.ImgBase64(imageA), Utility.ImgBase64(imageB));
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+        /// <summary>
+        /// 人脸对比 facecompareurl
+        /// </summary>
+        /// <param name="urlA">图片的urlA</param>
+        /// <param name="urlB">图片的urlB</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string facecompareurl(string urlA, string urlB)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/api/facecompare";
+            StringBuilder postData = new StringBuilder();
+            string pars = "\"app_id\":\"{0}\",\"urlA\":\"{1}\",\"urlB\":\"{2}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, urlA, urlB);
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
             return result;
         }
 
@@ -121,16 +204,38 @@ namespace TencentYoutuYun.SDK.Csharp
         public static string faceverify(string image_path, string person_id)
         {
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/faceverify";
+            string methodName = "youtu/api/faceverify";
             StringBuilder postData = new StringBuilder(); 
             string pars = "\"app_id\":\"{0}\",\"image\":\"{1}\",\"person_id\":\"{2}\"";
             pars =string.Format(pars, Conf.Instance().APPID, Utility.ImgBase64(image_path), person_id);
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
             return result;
         }
+
+        /// <summary>
+        /// 人脸验证 faceverifyurl
+        /// </summary>
+        /// <param name="url">图片的url</param>
+        /// <param name="person_id">待验证的人脸id</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string faceverifyurl(string url, string person_id)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/api/faceverify";
+            StringBuilder postData = new StringBuilder();
+            string pars = "\"app_id\":\"{0}\",\"url\":\"{1}\",\"person_id\":\"{2}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, url, person_id);
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+
         /// <summary>
         /// 人脸识别 faceidentify
         /// </summary>
@@ -140,14 +245,34 @@ namespace TencentYoutuYun.SDK.Csharp
         public static string faceidentify(string image_path, string group_id)
         {
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/faceidentify";
+            string methodName = "youtu/api/faceidentify";
             StringBuilder postData = new StringBuilder(); 
             string pars = "\"app_id\":\"{0}\",\"group_id\":\"{1}\",\"image\":\"{2}\"";
             pars =string.Format(pars, Conf.Instance().APPID, group_id, Utility.ImgBase64(image_path));
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+        /// <summary>
+        /// 人脸识别 faceidentifyurl
+        /// </summary>
+        /// <param name="url">图片的url</param>
+        /// <param name="group_id">识别的组id</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string faceidentifyurl(string url, string group_id)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/api/faceidentify";
+            StringBuilder postData = new StringBuilder();
+            string pars = "\"app_id\":\"{0}\",\"group_id\":\"{1}\",\"url\":\"{2}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, group_id, url);
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
             return result;
         }
 
@@ -167,16 +292,40 @@ namespace TencentYoutuYun.SDK.Csharp
         public static string newperson(string image_path, string person_id, string person_name, List<string> group_ids, string person_tag)
         {
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/newperson";
+            string methodName = "youtu/api/newperson";
             StringBuilder postData = new StringBuilder(); 
             string pars = "\"app_id\":\"{0}\",\"image\":\"{1}\",\"group_ids\":{2},\"person_id\":\"{3}\",\"person_name\":\"{4}\",\"tag\":\"{5}\"";
             pars =string.Format(pars, Conf.Instance().APPID, Utility.ImgBase64(image_path), JsonHelp<string[]>.ToJsonString(group_ids.ToArray()), person_id, person_name, person_tag);
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
             return result;
         }
+
+        /// <summary>
+        /// 个体创建 newpersonurl
+        /// </summary>
+        /// <param name="url">图片的url</param>
+        /// <param name="person_id">新建的个体id，用户指定，需要保证app_id下的唯一性</param>
+        /// <param name="person_name">姓名</param>
+        /// <param name="group_ids">新建的个体存放的组id，可以指定多个组id，用户指定（组默认创建）</param>
+        /// <param name="person_tag">备注信息，用户自解释字段</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string newpersonurl(string url, string person_id, string person_name, List<string> group_ids, string person_tag)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/api/newperson";
+            StringBuilder postData = new StringBuilder();
+            string pars = "\"app_id\":\"{0}\",\"url\":\"{1}\",\"group_ids\":{2},\"person_id\":\"{3}\",\"person_name\":\"{4}\",\"tag\":\"{5}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, url, JsonHelp<string[]>.ToJsonString(group_ids.ToArray()), person_id, person_name, person_tag);
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
         /// <summary>
         /// 删除个体 delperson
         /// </summary>
@@ -185,16 +334,17 @@ namespace TencentYoutuYun.SDK.Csharp
         public static string delperson(string person_id)
         {
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/delperson";
+            string methodName = "youtu/api/delperson";
             StringBuilder postData = new StringBuilder(); 
             string pars = "\"app_id\":\"{0}\",\"person_id\":\"{1}\"";
             pars =string.Format(pars, Conf.Instance().APPID, person_id);
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
             return result;
         }
+
         /// <summary>
         /// 增加人脸 addface
         /// </summary>
@@ -207,7 +357,7 @@ namespace TencentYoutuYun.SDK.Csharp
             List<string> faceImgBase64List = new List<string>();
 
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/addface";
+            string methodName = "youtu/api/addface";
             StringBuilder postData = new StringBuilder(); 
 
             image_path_arr.ForEach(path =>
@@ -222,10 +372,37 @@ namespace TencentYoutuYun.SDK.Csharp
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
 
             return result;
         }
+
+        /// <summary>
+        /// 增加人脸 addface
+        /// </summary>
+        /// <param name="person_id">新增人脸的个体身份id</param>
+        /// <param name="url_arr">待增加的包含人脸的url，可加入多个（包体大小<2m）</param>
+        /// <param name="facetag">人脸备注信息，用户自解释字段</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string addfaceurl(string person_id, List<string> url_arr, string facetag = "")
+        {
+            List<string> faceImgBase64List = new List<string>();
+
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/api/addface";
+            StringBuilder postData = new StringBuilder();
+            string pars = "\"app_id\":\"{0}\",\"urls\":{1},\"person_id\":\"{2}\",\"tag\":\"{3}\"";
+
+            pars = string.Format(pars, Conf.Instance().APPID, JsonHelp<string[]>.ToJsonString(url_arr.ToArray()), person_id, facetag);
+
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+
+            return result;
+        }
+
         /// <summary>
         /// 删除人脸 delface
         /// </summary>
@@ -235,14 +412,14 @@ namespace TencentYoutuYun.SDK.Csharp
         public static string delface(string person_id, List<string> face_ids)
         {
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/delface";
+            string methodName = "youtu/api/delface";
             StringBuilder postData = new StringBuilder(); 
             string pars = "\"app_id\":\"{0}\",\"person_id\":\"{1}\",\"face_ids\":{2}";
             pars =string.Format(pars, Conf.Instance().APPID, person_id, JsonHelp<string[]>.ToJsonString(face_ids.ToArray()));
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
 
             return result;
         }
@@ -256,14 +433,14 @@ namespace TencentYoutuYun.SDK.Csharp
         public static string setinfo(string person_id, string person_name, string person_tag)
         {
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/setinfo";
+            string methodName = "youtu/api/setinfo";
             StringBuilder postData = new StringBuilder(); 
             string pars = "\"app_id\":\"{0}\",\"person_name\":\"{1}\",\"person_id\":\"{2}\",\"tag\":\"{3}\"";
             pars =string.Format(pars, Conf.Instance().APPID, person_name, person_id, person_tag);
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
             return result;
         }
         /// <summary>
@@ -274,14 +451,14 @@ namespace TencentYoutuYun.SDK.Csharp
         public static string getinfo(string person_id)
         {
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/getinfo";
+            string methodName = "youtu/api/getinfo";
             StringBuilder postData = new StringBuilder(); 
             string pars = "\"app_id\":\"{0}\",\"person_id\":\"{1}\"";
             pars =string.Format(pars, Conf.Instance().APPID, person_id);
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
             return result;
         }
 
@@ -295,14 +472,14 @@ namespace TencentYoutuYun.SDK.Csharp
         public static string getgroupids()
         {
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/getgroupids";
+            string methodName = "youtu/api/getgroupids";
             StringBuilder postData = new StringBuilder(); 
             string pars = "\"app_id\":\"{0}\"";
             pars =string.Format(pars, Conf.Instance().APPID);
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
             return result;
         }
         /// <summary>
@@ -313,14 +490,14 @@ namespace TencentYoutuYun.SDK.Csharp
         public static string getpersonids(string group_id)
         {
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/getpersonids";
+            string methodName = "youtu/api/getpersonids";
             StringBuilder postData = new StringBuilder(); 
             string pars = "\"app_id\":\"{0}\",\"group_id\":\"{1}\"";
             pars =string.Format(pars, Conf.Instance().APPID, group_id);
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
             return result;
         }
         /// <summary>
@@ -331,14 +508,14 @@ namespace TencentYoutuYun.SDK.Csharp
         public static string getfaceids(string person_id)
         {
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/getfaceids";
+            string methodName = "youtu/api/getfaceids";
             StringBuilder postData = new StringBuilder(); 
             string pars = "\"app_id\":\"{0}\",\"person_id\":\"{1}\"";
             pars =string.Format(pars, Conf.Instance().APPID, person_id);
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
             return result;
         }
         /// <summary>
@@ -349,14 +526,138 @@ namespace TencentYoutuYun.SDK.Csharp
         public static string getfaceinfo(string face_id)
         {
             string expired = Utility.UnixTime(EXPIRED_SECONDS);
-            string url = Conf.Instance().API_YOUTU_END_POINT + "youtu/api/getfaceinfo";
+            string methodName = "youtu/api/getfaceinfo";
             StringBuilder postData = new StringBuilder(); 
             string pars = "\"app_id\":\"{0}\",\"face_id\":\"{1}\"";
             pars =string.Format(pars, Conf.Instance().APPID, face_id);
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");
-            string result = Http.Post(url, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+        #endregion
+
+        #region 图像识别服务
+
+        /// <summary>
+        /// 判断一个图像的模糊程度
+        /// </summary>
+        /// <param name="image_path">的图片路径</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string fuzzydetect(string image_path)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/imageapi/fuzzydetect";
+            StringBuilder postData = new StringBuilder();
+
+            string pars = "\"app_id\":\"{0}\",\"image\":\"{1}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, Utility.ImgBase64(image_path));
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+        /// <summary>
+        /// 判断一个图像的模糊程度
+        /// </summary>
+        /// <param name="url">图片的url</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string fuzzydetecturl(string url)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/imageapi/fuzzydetect";
+            StringBuilder postData = new StringBuilder();
+
+            string pars = "\"app_id\":\"{0}\",\"url\":\"{1}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, url);
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+        /// <summary>
+        /// 识别一个图像是否为美食图像
+        /// </summary>
+        /// <param name="image_path">的图片路径</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string fooddetect(string image_path)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/imageapi/fooddetect";
+            StringBuilder postData = new StringBuilder();
+
+            string pars = "\"app_id\":\"{0}\",\"image\":\"{1}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, Utility.ImgBase64(image_path));
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+        /// <summary>
+        /// 识别一个图像是否为美食图像
+        /// </summary>
+        /// <param name="url">图片的url</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string fooddetecturl(string url)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/imageapi/fooddetect";
+            StringBuilder postData = new StringBuilder();
+
+            string pars = "\"app_id\":\"{0}\",\"url\":\"{1}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, url);
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+        /// <summary>
+        /// 识别一个图像的标签信息,对图像分类
+        /// </summary>
+        /// <param name="image_path">的图片路径</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string imagetag(string image_path)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/imageapi/imagetag";
+            StringBuilder postData = new StringBuilder();
+
+            string pars = "\"app_id\":\"{0}\",\"image\":\"{1}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, Utility.ImgBase64(image_path));
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+        /// <summary>
+        /// 识别一个图像的标签信息,对图像分类
+        /// </summary>
+        /// <param name="url">图片的url</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string imagetagurl(string url)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/imageapi/imagetag";
+            StringBuilder postData = new StringBuilder();
+
+            string pars = "\"app_id\":\"{0}\",\"url\":\"{1}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, url);
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
             return result;
         }
 

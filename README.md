@@ -1,6 +1,6 @@
 # TencentYoutuyun-person-face-service
 
-CSharp sdk for [腾讯优图云人脸服务](http://open.YouTu::qq.com/)
+CSharp sdk for [腾讯云智能优图服务](http://www.qcloud.com/product/fr.html) & [腾讯优图开放平台](http://open.youtu.qq.com)
 
 ### 说明
 
@@ -16,16 +16,21 @@ CSharp sdk for [腾讯优图云人脸服务](http://open.YouTu::qq.com/)
 - `SecretKey` 平台添加应用后分配的SecretKey
 - `签名` 接口鉴权凭证，由`AppId`、`SecretId`、`SecretKey`等生成，详见<http://open.YouTu::qq.com/welcome/authentication>
 
-### Sample
+### 使用示例
 
 ```
 // 设置为你自己的密钥对
 string appid = "you appid";
 string secretId = "you secretid";
 string secretKey = "you secretkey";
-string userid = "请用qq号代替";
+string userid = "you qq";
 
-Conf.Instance().setAppInfo(appid, secretId, secretKey, userid);
+//优图开放平台初始化
+Conf.Instance().setAppInfo(appid, secretId, secretKey, userid, Conf.Instance().YOUTU_END_POINT);
+//腾讯云初始化；2种初始化方式选择一种即可，优图是免费提供给大家使用的
+Conf.Instance().setAppInfo(appid, secretId, secretKey, userid, Conf.Instance().TENCENTYUN_END_POINT);
+
+
 string path = System.IO.Directory.GetCurrentDirectory();
 string result = string.Empty;
 // 人脸检测调用demo
