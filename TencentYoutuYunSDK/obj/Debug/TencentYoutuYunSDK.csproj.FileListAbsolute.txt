@@ -25,3 +25,11 @@ D:\openpPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Debug\Newtonsoft.Json.xml
 D:\openpPlatForm\CSharp_sdk\TencentYoutuYunSDK\obj\Debug\TencentYoutuYunCsharpSDK.dll
 D:\openpPlatForm\CSharp_sdk\TencentYoutuYunSDK\obj\Debug\TencentYoutuYunCsharpSDK.pdb
 D:\openpPlatForm\CSharp_sdk\TencentYoutuYunSDK\obj\Debug\TencentYoutuYunSDK.csprojResolveAssemblyReference.cache
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Debug\TencentYoutuYunCsharpSDK.XML
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Debug\TencentYoutuYunCsharpSDK.dll
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Debug\TencentYoutuYunCsharpSDK.pdb
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Debug\Newtonsoft.Json.dll
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Debug\System.Data.DataSetExtensions.dll
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Debug\Newtonsoft.Json.xml
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\obj\Debug\TencentYoutuYunCsharpSDK.dll
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\obj\Debug\TencentYoutuYunCsharpSDK.pdb

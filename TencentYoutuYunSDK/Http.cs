@@ -70,6 +70,10 @@ namespace TencentYoutuYun.SDK.Csharp
                     // no http status code available
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             return ret;
         }
 

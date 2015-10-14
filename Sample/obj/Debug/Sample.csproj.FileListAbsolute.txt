@@ -26,3 +26,13 @@ D:\openpPlatForm\CSharp_sdk\Sample\bin\Debug\TencentYoutuYunCsharpSDK.xml
 D:\openpPlatForm\CSharp_sdk\Sample\bin\Debug\Newtonsoft.Json.xml
 D:\openpPlatForm\CSharp_sdk\Sample\obj\Debug\Sample.csprojResolveAssemblyReference.cache
 D:\openpPlatForm\CSharp_sdk\Sample\bin\Debug\TencentYoutuYunCsharpSDK.pdb
+D:\openPlatForm\CSharp_sdk\Sample\obj\Debug\Sample.exe
+D:\openPlatForm\CSharp_sdk\Sample\obj\Debug\Sample.pdb
+D:\openPlatForm\CSharp_sdk\Sample\bin\Debug\Sample.exe
+D:\openPlatForm\CSharp_sdk\Sample\bin\Debug\Sample.pdb
+D:\openPlatForm\CSharp_sdk\Sample\bin\Debug\TencentYoutuYunCsharpSDK.dll
+D:\openPlatForm\CSharp_sdk\Sample\bin\Debug\Newtonsoft.Json.dll
+D:\openPlatForm\CSharp_sdk\Sample\bin\Debug\TencentYoutuYunCsharpSDK.pdb
+D:\openPlatForm\CSharp_sdk\Sample\bin\Debug\TencentYoutuYunCsharpSDK.xml
+D:\openPlatForm\CSharp_sdk\Sample\bin\Debug\Newtonsoft.Json.xml
+D:\openPlatForm\CSharp_sdk\Sample\obj\Debug\Sample.csprojResolveAssemblyReference.cache

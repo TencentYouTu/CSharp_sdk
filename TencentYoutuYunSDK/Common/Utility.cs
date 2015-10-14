@@ -115,7 +115,26 @@ namespace TencentYoutuYun.SDK.Csharp.Common
                 img = Image.FromFile(path);
             }
             MemoryStream ms = new MemoryStream();
-            img.Save(ms, ImageFormat.Png);
+            string file_etx = Path.GetExtension(path).ToLower();
+            switch (file_etx)
+            {
+                case ".jpg": 
+                    img.Save(ms, ImageFormat.Jpeg); 
+                    break;
+                case ".png":
+                    img.Save(ms, ImageFormat.Png);
+                    break;
+                case ".gif":
+                    img.Save(ms, ImageFormat.Gif);
+                    break;
+                case ".bmp":
+                    img.Save(ms, ImageFormat.Bmp);
+                    break;
+               default:
+                    img.Save(ms, ImageFormat.Jpeg);
+                    break;
+
+            }
             return Convert.ToBase64String(ms.ToArray());
 
         }

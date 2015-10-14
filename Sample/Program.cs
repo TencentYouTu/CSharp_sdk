@@ -21,11 +21,10 @@ namespace Sample
             Conf.Instance().setAppInfo(appid, secretId, secretKey, userid, Conf.Instance().YOUTU_END_POINT);
 
             string path = System.IO.Directory.GetCurrentDirectory() + "\\test.jpg";
+            string path2 = System.IO.Directory.GetCurrentDirectory() + "\\test.jpg";
             string result = string.Empty;
-            //// 人脸检测 调用列子
-            string url = "http://open.youtu.qq.com/content/img/slide-1.jpg";
-            result = Youtu.addfaceurl("12345", new List<string> { url});
-            //result = Youtu.faceshape(path);
+
+            result = Youtu.facecompare(path,path2);
             Console.WriteLine(result);
             Console.ReadKey();
 

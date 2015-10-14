@@ -12,3 +12,11 @@ D:\openpPlatForm\CSharp_sdk\TencentYoutuYunSDK\obj\Release\TencentYoutuYunCsharp
 D:\openpPlatForm\CSharp_sdk\TencentYoutuYunSDK\obj\Release\TencentYoutuYunCsharpSDK.pdb
 D:\openpPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Release\TencentYoutuYunCsharpSDK.XML
 D:\openpPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Release\System.Data.DataSetExtensions.dll
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Release\TencentYoutuYunCsharpSDK.XML
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Release\TencentYoutuYunCsharpSDK.dll
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Release\TencentYoutuYunCsharpSDK.pdb
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Release\Newtonsoft.Json.dll
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Release\System.Data.DataSetExtensions.dll
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\bin\Release\Newtonsoft.Json.xml
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\obj\Release\TencentYoutuYunCsharpSDK.dll
+D:\openPlatForm\CSharp_sdk\TencentYoutuYunSDK\obj\Release\TencentYoutuYunCsharpSDK.pdb
