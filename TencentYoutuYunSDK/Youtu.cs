@@ -18,7 +18,7 @@ namespace TencentYoutuYun.SDK.Csharp
         /// <returns></returns>
         public static string statusText(int status)
         {
-            string statusText = "UNKOWN";
+            string statusText = "UNKOWN;status=" + status;
 
             switch (status)
             {
@@ -198,7 +198,7 @@ namespace TencentYoutuYun.SDK.Csharp
         /// <summary>
         /// 人脸验证 faceverify
         /// </summary>
-        /// <param name="image_path">待验证的图片路径</param>
+        /// <param name="image_path">待验证图片路径</param>
         /// <param name="person_id">待验证的人脸id</param>
         /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         public static string faceverify(string image_path, string person_id)
@@ -239,7 +239,7 @@ namespace TencentYoutuYun.SDK.Csharp
         /// <summary>
         /// 人脸识别 faceidentify
         /// </summary>
-        /// <param name="image_path">待识别的图片路径</param>
+        /// <param name="image_path">待识别图片路径</param>
         /// <param name="group_id">识别的组id</param>
         /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         public static string faceidentify(string image_path, string group_id)
@@ -544,7 +544,7 @@ namespace TencentYoutuYun.SDK.Csharp
         /// <summary>
         /// 判断一个图像的模糊程度
         /// </summary>
-        /// <param name="image_path">的图片路径</param>
+        /// <param name="image_path">图片路径</param>
         /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         public static string fuzzydetect(string image_path)
         {
@@ -584,7 +584,7 @@ namespace TencentYoutuYun.SDK.Csharp
         /// <summary>
         /// 识别一个图像是否为美食图像
         /// </summary>
-        /// <param name="image_path">的图片路径</param>
+        /// <param name="image_path">图片路径</param>
         /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         public static string fooddetect(string image_path)
         {
@@ -624,7 +624,7 @@ namespace TencentYoutuYun.SDK.Csharp
         /// <summary>
         /// 识别一个图像的标签信息,对图像分类
         /// </summary>
-        /// <param name="image_path">的图片路径</param>
+        /// <param name="image_path">图片路径</param>
         /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         public static string imagetag(string image_path)
         {
@@ -654,6 +654,135 @@ namespace TencentYoutuYun.SDK.Csharp
 
             string pars = "\"app_id\":\"{0}\",\"url\":\"{1}\"";
             pars = string.Format(pars, Conf.Instance().APPID, url);
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+        /// <summary>
+        /// 识别一个图像是否为色情图像
+        /// </summary>
+        /// <param name="image_path">图片路径</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string imageporn(string image_path)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/imageapi/imageporn";
+            StringBuilder postData = new StringBuilder();
+
+            string pars = "\"app_id\":\"{0}\",\"image\":\"{1}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, Utility.ImgBase64(image_path));
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+        /// <summary>
+        /// 识别一个图像是否为色情图像
+        /// </summary>
+        /// <param name="url">图片的url</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string imagepornurl(string url)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/imageapi/imageporn";
+            StringBuilder postData = new StringBuilder();
+
+            string pars = "\"app_id\":\"{0}\",\"url\":\"{1}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, url);
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+        #endregion
+
+        #region OCR
+
+        /// <summary>
+        /// 根据用户上传的包含身份证正反面照片，识别并且获取证件姓名、性别、民族、出生日期、地址、身份证号、证件有效期、发证机关等详细的身份证信息，并且可以返回精确剪裁对齐后的身份证正反面图片
+        /// </summary>
+        /// <param name="image_path">图片路径</param>
+        /// <param name="card_type">身份证图片类型，0-正面，1-反面</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string idcardocr(string image_path,int card_type)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/ocrapi/idcardocr";
+            StringBuilder postData = new StringBuilder();
+
+            string pars = "\"app_id\":\"{0}\",\"image\":\"{1}\",\"card_type\":\"{2}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, Utility.ImgBase64(image_path),card_type);
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+        /// <summary>
+        /// 根据用户上传的包含身份证正反面照片，识别并且获取证件姓名、性别、民族、出生日期、地址、身份证号、证件有效期、发证机关等详细的身份证信息，并且可以返回精确剪裁对齐后的身份证正反面图片
+        /// </summary>
+        /// <param name="url">图片的url</param>
+        ///<param name="card_type">身份证图片类型，0-正面，1-反面</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string idcardocrurl(string url,int card_type)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/ocrapi/idcardocr";
+            StringBuilder postData = new StringBuilder();
+
+            string pars = "\"app_id\":\"{0}\",\"url\":\"{1}\",\"card_type\":\"{2}\"";
+            pars = string.Format(pars, Conf.Instance().APPID,url,card_type);
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+
+        /// <summary>
+        /// 名片OCR识别
+        /// </summary>
+        /// <param name="image_path">图片路径</param>
+        /// <param name="retimage ">是否需要返回处理结果图,true 返回，false 不返回</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string namecardocr(string image_path, bool retimage)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/ocrapi/namecardocr";
+            StringBuilder postData = new StringBuilder();
+
+            string pars = "\"app_id\":\"{0}\",\"image\":\"{1}\",\"retimage\":\"{2}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, Utility.ImgBase64(image_path), retimage);
+            postData.Append("{");
+            postData.Append(pars);
+            postData.Append("}");
+            string result = Http.HttpPost(methodName, postData.ToString(), Auth.appSign(expired, Conf.Instance().USER_ID));
+            return result;
+        }
+
+        /// <summary>
+        /// 名片OCR识别
+        /// </summary>
+        /// <param name="url">图片的url</param>
+        ///<param name="retimage ">是否需要返回处理结果图,true 返回，false 不返回</param>
+        /// <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        public static string namecardocrurl(string url, bool retimage)
+        {
+            string expired = Utility.UnixTime(EXPIRED_SECONDS);
+            string methodName = "youtu/ocrapi/namecardocr";
+            StringBuilder postData = new StringBuilder();
+
+            string pars = "\"app_id\":\"{0}\",\"url\":\"{1}\",\"retimage\":\"{2}\"";
+            pars = string.Format(pars, Conf.Instance().APPID, url, retimage);
             postData.Append("{");
             postData.Append(pars);
             postData.Append("}");

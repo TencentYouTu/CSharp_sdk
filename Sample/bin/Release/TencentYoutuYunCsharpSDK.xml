@@ -277,7 +277,7 @@
             <summary>
             人脸验证 faceverify
             </summary>
-            <param name="image_path">待验证的图片路径</param>
+            <param name="image_path">待验证图片路径</param>
             <param name="person_id">待验证的人脸id</param>
             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         </member>
@@ -293,7 +293,7 @@
             <summary>
             人脸识别 faceidentify
             </summary>
-            <param name="image_path">待识别的图片路径</param>
+            <param name="image_path">待识别图片路径</param>
             <param name="group_id">识别的组id</param>
             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         </member>
@@ -391,7 +391,7 @@
             <summary>
             判断一个图像的模糊程度
             </summary>
-            <param name="image_path">的图片路径</param>
+            <param name="image_path">图片路径</param>
             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         </member>
         <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.fuzzydetecturl(System.String)">
@@ -405,7 +405,7 @@
             <summary>
             识别一个图像是否为美食图像
             </summary>
-            <param name="image_path">的图片路径</param>
+            <param name="image_path">图片路径</param>
             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         </member>
         <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.fooddetecturl(System.String)">
@@ -419,7 +419,7 @@
             <summary>
             识别一个图像的标签信息,对图像分类
             </summary>
-            <param name="image_path">的图片路径</param>
+            <param name="image_path">图片路径</param>
             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         </member>
         <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.imagetagurl(System.String)">
@@ -428,6 +428,52 @@
             </summary>
             <param name="url">图片的url</param>
             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.imageporn(System.String)">
+            <summary>
+            识别一个图像是否为色情图像
+            </summary>
+            <param name="image_path">图片路径</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.imagepornurl(System.String)">
+            <summary>
+            识别一个图像是否为色情图像
+            </summary>
+            <param name="url">图片的url</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.idcardocr(System.String,System.Int32)">
+            <summary>
+            根据用户上传的包含身份证正反面照片，识别并且获取证件姓名、性别、民族、出生日期、地址、身份证号、证件有效期、发证机关等详细的身份证信息，并且可以返回精确剪裁对齐后的身份证正反面图片
+            </summary>
+            <param name="image_path">图片路径</param>
+            <param name="card_type">身份证图片类型，0-正面，1-反面</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.idcardocrurl(System.String,System.Int32)">
+             <summary>
+             根据用户上传的包含身份证正反面照片，识别并且获取证件姓名、性别、民族、出生日期、地址、身份证号、证件有效期、发证机关等详细的身份证信息，并且可以返回精确剪裁对齐后的身份证正反面图片
+             </summary>
+             <param name="url">图片的url</param>
+            <param name="card_type">身份证图片类型，0-正面，1-反面</param>
+             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.namecardocr(System.String,System.Boolean)">
+            <summary>
+            名片OCR识别
+            </summary>
+            <param name="image_path">图片路径</param>
+            <param name="retimage ">是否需要返回处理结果图,true 返回，false 不返回</param>
+            <returns>返回的结果，JSON字符串，字段参见API文档</returns>
+        </member>
+        <member name="M:TencentYoutuYun.SDK.Csharp.Youtu.namecardocrurl(System.String,System.Boolean)">
+             <summary>
+             名片OCR识别
+             </summary>
+             <param name="url">图片的url</param>
+            <param name="retimage ">是否需要返回处理结果图,true 返回，false 不返回</param>
+             <returns>返回的结果，JSON字符串，字段参见API文档</returns>
         </member>
     </members>
 </doc>
